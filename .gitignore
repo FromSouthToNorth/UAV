@@ -4,9 +4,6 @@
 *.JPEG
 *.jpeg
 
-# DJI 飞行日志二进制文件
-dataSource/track/txt/
-
 # 生成的输出文件
 *.csv
 *.ply
