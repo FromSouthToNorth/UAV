@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 项目性质
 
-这是一个**数据存储仓库**，用于存储 DJI 无人机采集的飞行轨迹数据与航拍照片，不包含代码构建系统（无 package.json、无构建脚本、无测试框架）。
+这是一个**数据存储仓库**，用于存储 DJI 无人机采集的飞行轨迹数据，航拍照片已移至网盘，不包含代码构建系统（无 package.json、无构建脚本、无测试框架）。
 
 ## 数据结构
 
@@ -15,8 +15,7 @@ dataSource/
 │   └── json/                       # 解析后的轨迹 JSON 数据
 │       └── track.json              # 包含 frames 数组，每个 frame 有 osd.latitude / osd.longitude / osd.height 等字段
 └── aerial-pictures/                # 航拍照片数据
-    ├── img/                        # 588 张 DJI_*.JPG 照片
-    └── README.md
+    └── README.md                   # 照片说明，含夸克网盘下载链接
 ```
 
 ## 常用数据操作命令
@@ -31,8 +30,9 @@ dji-log-parser dataSource/track/txt/DJIFlightRecord_2026-05-24_\[11-48-03\].txt
 ### 提取照片 GPS 信息
 
 ```bash
+# 照片需先从夸克网盘下载到本地
 # 使用 exiftool 批量提取 GPS 数据
-cd dataSource/aerial-pictures/img/
+cd /path/to/downloaded/photos/
 exiftool -csv -GPSLatitude -GPSLongitude -GPSAltitude -n *.JPG > gps_data.csv
 ```
 

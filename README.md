@@ -17,9 +17,7 @@ UAV/
 │   │       ├── DJIFlightRecord_2026-05-02_[15-50-21].txt   # 飞行记录 2
 │   │       └── DJIFlightRecord_2026-05-24_[11-48-03].txt   # 飞行记录 3
 │   └── aerial-pictures/               # 航拍照片数据
-│       ├── README.md                  # 照片数据说明
-│       └── img/
-│           └── DJI_*.JPG              # 588 张航拍照片
+│       └── README.md                  # 照片数据说明及网盘链接
 ```
 
 ---
@@ -48,6 +46,7 @@ UAV/
 | 命名规则 | DJI_XXXX.JPG（0001 - 0999） |
 | 地理信息 | 包含 EXIF GPS 经纬度坐标 |
 | 用途 | 点云生成、三维重建、正射影像 |
+| 存储位置 | [夸克网盘](https://pan.quark.cn/s/c31247f1a09d) |
 
 **编号分布**:
 - 存在照片: 588 张
@@ -111,7 +110,7 @@ exiftool -csv -GPSLatitude -GPSLongitude -GPSAltitude dataSource/aerial-pictures
 ## 注意事项
 
 1. **日志文件为二进制格式**，直接用文本编辑器打开会显示乱码，需使用专用解析工具
-2. **照片已包含 GPS 坐标**，可直接用于地理配准和三维重建
+2. **照片已从仓库移除**，请从夸克网盘下载后使用，照片包含 GPS 坐标可用于地理配准和三维重建
 3. **WebODM 处理耗时较长**，588 张照片建议在高性能机器上运行
 4. **DJI API 密钥** 需在 DJI 开发者平台创建 Open API 类型应用获取
 
