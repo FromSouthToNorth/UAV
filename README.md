@@ -33,8 +33,8 @@ UAV/
 | DJIFlightRecord_2026-05-24_[11-48-03].txt | 2026-05-24 | 1.5 MB | 上午飞行记录 |
 
 - **格式**: DJI 专有二进制日志格式（.txt 扩展名）
-- **解析方式**: 需使用 DJI 官方工具或第三方解析器
-- **推荐工具**: [dji-log-parser](https://github.com/lvauvillier/dji-log-parser)
+- **解析方式**: 使用 DJI 官方 `FlightRecordParsingLib` 解析
+- **推荐工具**: [FlightRecordParsingLib](https://github.com/dji-sdk/FlightRecordParsingLib)
 - **API 要求**: 需在 [DJI 开发者平台](https://developer.dji.com/cn/) 注册并获取 API 密钥
 
 ### 2. 航拍照片
@@ -59,16 +59,18 @@ UAV/
 ### 解析飞行日志
 
 ```bash
-# 使用 dji-log-parser 解析二进制日志
-# 安装: npm install -g dji-log-parser
-dji-log-parser DJIFlightRecord_2026-05-24_\[11-48-03\].txt
+# 使用 FlightRecordParsingLib 解析二进制日志
+# 参考: https://github.com/dji-sdk/FlightRecordParsingLib
+# 解析结果输出为 json_result.json
 ```
 
 ### 提取照片 GPS 信息
 
 ```bash
+# 照片需先从夸克网盘下载到本地
 # 使用 exiftool 批量提取
-exiftool -csv -GPSLatitude -GPSLongitude -GPSAltitude dataSource/aerial-pictures/img/ > gps_data.csv
+cd /path/to/downloaded/photos/
+exiftool -csv -GPSLatitude -GPSLongitude -GPSAltitude -n *.JPG > gps_data.csv
 ```
 
 ### 生成点云数据
@@ -87,7 +89,7 @@ exiftool -csv -GPSLatitude -GPSLongitude -GPSAltitude dataSource/aerial-pictures
 
 | 用途 | 工具 | 链接 |
 |------|------|------|
-| 日志解析 | dji-log-parser | https://github.com/lvauvillier/dji-log-parser |
+| 日志解析 | FlightRecordParsingLib | https://github.com/dji-sdk/FlightRecordParsingLib |
 | 点云生成 | WebODM | https://webodm.org/download/ |
 | GPS 提取 | exiftool | https://exiftool.org/ |
 | DJI API | DJI 开发者平台 | https://developer.dji.com/cn/ |
@@ -98,7 +100,7 @@ exiftool -csv -GPSLatitude -GPSLongitude -GPSAltitude dataSource/aerial-pictures
 
 ```
 无人机采集
-    ├── 飞行日志 (.txt) ──> dji-log-parser ──> 轨迹数据 (CSV/JSON)
+    ├── 飞行日志 (.txt) ──> FlightRecordParsingLib ──> 轨迹数据 (JSON)
     │                                          └──> 飞行路径可视化
     │
     └── 航拍照片 (.JPG) ──> WebODM ──> 点云 / 正射影像 / DSM / DTM

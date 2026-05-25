@@ -23,8 +23,8 @@ dataSource/
 ### 解析飞行日志
 
 ```bash
-# 使用 dji-log-parser 解析二进制日志（需先 npm install -g dji-log-parser）
-dji-log-parser dataSource/track/txt/DJIFlightRecord_2026-05-24_\[11-48-03\].txt
+# 使用 FlightRecordParsingLib 解析二进制日志
+# 参考: https://github.com/dji-sdk/FlightRecordParsingLib
 ```
 
 ### 提取照片 GPS 信息
@@ -51,7 +51,7 @@ exiftool -csv -GPSLatitude -GPSLongitude -GPSAltitude -n *.JPG > gps_data.csv
 
 | 工具 | 用途 |
 |------|------|
-| dji-log-parser | 解析 DJI 二进制飞行日志 |
+| FlightRecordParsingLib | 解析 DJI 二进制飞行日志（DJI 官方库）|
 | exiftool | 提取照片 EXIF / GPS 信息 |
 | WebODM | 处理航拍照片生成点云 / 正射影像 |
 
